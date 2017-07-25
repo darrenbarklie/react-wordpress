@@ -2,8 +2,10 @@ import { render } from 'react-dom';
 import DataActions from 'flux/actions/DataActions.js';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
+import Header from 'components/Header.js';
 import Home from 'components/Home.js';
 import About from 'components/About.js';
+
 
 class AppInitializer {
 
@@ -30,6 +32,9 @@ class AppInitializer {
       render(
         <Router>
           <div>
+
+            <Header />
+
             <Switch>
               <Route path="/" component={ Home } exact />
 
