@@ -1,23 +1,46 @@
 import { render } from 'react-dom';
+import DataActions from 'flux/actions/DataActions.js';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import Home from 'components/Home.js';
+import About from 'components/About.js';
 
 class AppInitializer {
 
-  run() {
-    render(
-      <Router>
-        <div>
-          <Switch>
-            <Route path="/" component={ Home } exact />
-            <Route render={() => { return <Redirect to="/" /> }} />
-          </Switch>
-        </div>
-      </Router>
+  templates = {
+    'about': About
+  }
 
-      , document.getElementById('app')
-    );
+  buildRoutes(data){
+    return data.pages.map((page, i) => {
+      return (
+        <Route
+          key={i}
+          component={this.templates[page.slug]}
+          path={`/${page.slug}`}
+          exact
+        />
+      )
+    })
+  }
+
+
+  run() {
+    DataActions.getPages((response)=>{
+      render(
+        <Router>
+          <div>
+            <Switch>
+              <Route path="/" component={ Home } exact />
+
+              {this.buildRoutes(response)}
+              <Route render={() => { return <Redirect to="/404" /> }} />
+            </Switch>
+          </div>
+        </Router>,
+        document.getElementById('app')
+      )
+    });
   }
 }
 

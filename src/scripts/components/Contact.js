@@ -1,6 +1,6 @@
 import DataStore from 'flux/stores/DataStore.js'
 
-class Home extends React.Component {
+class Contact extends React.Component {
   render() {
 
     let allData = DataStore.getAll();
@@ -8,10 +8,10 @@ class Home extends React.Component {
 
     return (
       <div>
-        <h2>Home Component</h2>
+        <h2>Contact Component</h2>
       </div>
     );
   }
 }
 
-export default Home;
+export default Contact;
