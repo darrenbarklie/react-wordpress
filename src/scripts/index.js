@@ -4,14 +4,24 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 import Header from 'components/Header.js';
 import Home from 'components/Home.js';
+import Work from 'components/Work.js';
 import About from 'components/About.js';
+import Contact from 'components/Contact.js';
 
 
 class AppInitializer {
 
+  // templates = {
+  //   'work': Work
+  // }
+
   templates = {
-    'about': About
+    'work': Work,
+    'about': About,
+    'contact': Contact
   }
+
+
 
   buildRoutes(data){
     return data.pages.map((page, i) => {
